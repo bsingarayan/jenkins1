@@ -1,6 +1,6 @@
 // MyProject-Build.groovy
 
-def gitUrl = "https://github.com/bsingarayan/jenkins1.git"
+def gitUrl = "https://github.com/bsingarayan/jenkins-pipes-helloworld.git"
 
 job("MyProject-Build") {
     description "Builds MyProject from master branch."
@@ -10,7 +10,7 @@ job("MyProject-Build") {
     scm {
         git {
             remote {
-                url gitUrl.
+                url gitUrl
                 branch "origin/master"
             }
             extensions {

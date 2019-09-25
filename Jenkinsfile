@@ -1,17 +1,18 @@
 node {
   stage('start-docker') {
-    sh "docker run -dt --name replica gcr.io/s2-kubeflow-master-249419/replica-docker:latest tail -f /dev/null"
+    sh "docker run -dt --name replica circleci/python:3.6.4 tail -f /dev/null"
   }
   try {
     stage('user-commands') {
       echo "first stage of the container..."
-      sh "docker exec -i replica ls -l"
+      sh "docker exec -i replica echo hello world"
     }
   } finally {
     stage('cleanup') {
       echo "doing some cleanup..."
-      sh "docker stop container replica"
-      sh "docker rm images replica"
+      sh "docker stop replica"
+      sh "docker rm replica"
+      sh "docker image rm circleci/python:3.6.4"
     }
   }
 }

@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  sample:
+    working_directory: ~/replica-demo
+    docker:
+      - image: circleci/python:3.6.4
+    steps:
+      - checkout
+      - run: echo "hello world"
+      - run:
+         command: |
+           sudo pip install pipenv
+           pipenv install
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+workflows:
+  version: 2
+  all:
+    jobs:
+      - nothing

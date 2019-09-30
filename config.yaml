@@ -6,11 +6,10 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - checkout
-      - run: echo "hello world"
+      - run: echo "hello world! This is from replica infrastructure"
       - run:
          command: |
            sudo pip install pipenv
-           pipenv install
       - store_test_results:
           path: test-results
       - store_artifacts:
